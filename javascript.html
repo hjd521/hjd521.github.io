@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <style>
+       .content,.content1,.prototype_test{
+        margin-left: 50px;
+       }
+    </style>
+</head>
+<body>
+<div class="nav-box">
+    <nav class="navbar navbar-default" role="navigation">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#">源生JavaScript总结学习</a>
+            </div>
+            <div>
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="#">一：函数</a></li>
+                    <li><a href="#">二：封装</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            继承
+                            <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">call/apply实现继承</a></li>
+                            <li><a href="#">prototype模式实现继承</a></li>
+                            <li><a href="#">直接继承prototype</a></li>
+                            <li class="divider"></li>
+                            <li><a href="#">利用空对象作为中介实现继承</a></li>
+                            <li class="divider"></li>
+                            <li><a href="#">拷贝实现继承</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</div>
+<div class="content">
+    <h2>构造函数模式</h2>
+    <div class="fc-method">
+        <p>
+            function dog(name,color,age) {<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;this.name = name;<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;this.color = color;<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;this.age = age;<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;this.type = "动物";<br>
+            }
+        </p>
+        <h3>这样就可以生成实例对象了</h3>
+        <p>
+            var dog1 = dog("小黑","yellow",15);<br>
+            alert(dog1.color);<br>
+            alert(dog1.constructor == dog);&nbsp;&nbsp;//true;<br>
+           //constructor属性用指向一个实例的构造函数。
+        </p>
+        <p>
+            这种模式的缺点：每一个实例对象type属性都是一样的内容，这样不环保也浪费内存。<br>
+            因此：我们可不可以让其只实例化一次呐？答案是确定，接下来就该原型模式登场了。
+        </p>
+    </div>
+</div>
+<div class="content1">
+    <h2>原型模式（prototype）</h2>
+    function dog(name,color,age) {<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;this.name = name;<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;this.color = color;<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;this.age = age;<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;this.type = "狗";<br>
+    }<br>
+    dog.prototype.type = "动物"或者dog.prototype = {type:"动物"};
+</div>
+<div class="prototype_test">
+    <h3>prototype模式的验证方法</h3>
+    <h4>1:构造函数的原型与实例的关系判断isPrototypeOf(0</h4>
+    <p>alert(dog.prototype.isPrototypeOf(dog1)</p>
+    <h4>判断一个属性是不是实例对象的本地属性hasOwnProperty</h4>
+    <p>alert(dog1.hasOwnPrototypeOf("name"));<br>
+        alert(dog1.hasWonPrototypeOf("type"));
+    </p>
+
+</div>
+</body>
+</html>
